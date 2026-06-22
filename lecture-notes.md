@@ -156,3 +156,94 @@ MFA = Something you know + Something you own
 AWS allows you to add up to **8 MFA devices** per user.
 
 Using MFA significantly improves account security by requiring an additional verification step during login.
+
+
+# Amazon EC2
+
+**Amazon Elastic Compute Cloud (EC2)** is an **Infrastructure as a Service (IaaS)** offering that provides scalable virtual servers in the cloud.
+
+## EC2 Consists Of
+
+- Renting virtual machines (**EC2 Instances**)
+- Storing data on virtual drives (**EBS - Elastic Block Store**)
+- Distributing traffic across multiple machines (**ELB - Elastic Load Balancer**)
+- Automatically scaling services (**ASG - Auto Scaling Group**)
+
+---
+
+# EC2 Sizing & Configuration Options
+
+When launching an EC2 instance, you can configure:
+
+## Operating System (OS)
+
+- Linux
+- Windows
+- macOS
+
+## Compute Resources
+
+- Number of CPUs (vCPUs)
+- Processing power
+
+## Memory
+
+- Amount of RAM (Random Access Memory)
+
+## Storage
+
+### Network-Attached Storage
+
+- **EBS (Elastic Block Store)**
+- **EFS (Elastic File System)**
+
+### Hardware Storage
+
+- **EC2 Instance Store** (physically attached storage)
+
+## Networking
+
+- Network card performance and speed
+- Public IP address assignment
+
+## Security
+
+- Firewall rules using **Security Groups**
+
+## Bootstrap Configuration
+
+- **EC2 User Data** scripts that run when the instance starts
+
+---
+
+# EC2 User Data
+
+**EC2 User Data** allows you to automate tasks that run when an instance is launched.
+
+Common use cases include:
+
+- Installing operating system updates
+- Installing software and dependencies
+- Downloading files from the internet
+- Configuring applications and services
+- Running custom startup scripts
+- Any other initialization task
+
+## Important Notes
+
+- User Data scripts are typically executed during the first boot of the instance.
+- The script runs with **root (administrator) privileges**, giving it full access to configure the system.
+- User Data helps automate server setup and reduces manual configuration effort.
+
+---
+
+# Example Use Case
+
+When launching a new web server, an EC2 User Data script can automatically:
+
+1. Install system updates
+2. Install a web server (e.g., Apache or Nginx)
+3. Download application files
+4. Start required services
+
+This allows the server to be ready for use immediately after launch.
