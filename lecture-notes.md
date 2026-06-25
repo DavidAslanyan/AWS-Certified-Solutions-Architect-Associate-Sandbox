@@ -605,3 +605,134 @@ EC2 instances can initiate outbound connections unless outbound rules are restri
 **SG = Security Group = Shield Guard**
 
 Think of Security Groups as guards standing in front of your EC2 instance, allowing only approved traffic to pass through.
+
+# Common AWS Ports to Know
+
+These ports are frequently referenced in AWS exams and real-world deployments.
+
+| Port | Protocol / Service | Purpose |
+|--------|------------------|---------|
+| **22** | SSH (Secure Shell) | Log in to Linux EC2 instances |
+| **21** | FTP (File Transfer Protocol) | Transfer files to/from a server |
+| **22** | SFTP (Secure File Transfer Protocol) | Secure file transfer over SSH |
+| **80** | HTTP | Access unsecured websites |
+| **443** | HTTPS | Access secured websites using SSL/TLS |
+| **3389** | RDP (Remote Desktop Protocol) | Log in to Windows EC2 instances |
+
+---
+
+## Details
+
+### SSH (Port 22)
+
+Used to securely connect to Linux servers.
+
+Example:
+
+```bash
+ssh -i my-key.pem ec2-user@<public-ip>
+```
+
+**Common AWS Use Case:**
+- Managing Linux EC2 instances
+
+---
+
+### FTP (Port 21)
+
+Used for file transfers between systems.
+
+**Note:**
+FTP is not encrypted and is generally discouraged for sensitive data.
+
+**Common AWS Use Case:**
+- Legacy file transfer systems
+
+---
+
+### SFTP (Port 22)
+
+Secure version of FTP that runs over SSH.
+
+**Benefits:**
+- Encrypted communication
+- More secure than FTP
+
+**Common AWS Use Case:**
+- Secure file uploads and downloads
+
+---
+
+### HTTP (Port 80)
+
+Standard protocol for unencrypted web traffic.
+
+Example:
+
+```text
+http://example.com
+```
+
+**Common AWS Use Case:**
+- Public websites
+- Load balancers
+- Web applications
+
+---
+
+### HTTPS (Port 443)
+
+Secure version of HTTP using SSL/TLS encryption.
+
+Example:
+
+```text
+https://example.com
+```
+
+**Common AWS Use Case:**
+- Secure websites
+- APIs
+- Online applications
+
+**Exam Tip:**  
+When security or encryption is mentioned, expect traffic on **port 443**.
+
+---
+
+### RDP (Port 3389)
+
+Remote Desktop Protocol used to connect to Windows servers.
+
+**Common AWS Use Case:**
+- Managing Windows EC2 instances
+
+Example:
+
+```text
+Your Computer
+      ↓
+RDP (3389)
+      ↓
+Windows EC2 Instance
+```
+
+---
+
+## Quick Exam Memorization
+
+| Port | Remember As |
+|--------|-------------|
+| **21** | FTP |
+| **22** | SSH / SFTP |
+| **80** | HTTP |
+| **443** | HTTPS |
+| **3389** | Windows RDP |
+
+### Easy Memory Trick
+
+- **22** → Linux
+- **80** → Website
+- **443** → Secure Website
+- **3389** → Windows Desktop
+- **21** → File Transfer
