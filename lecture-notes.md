@@ -736,3 +736,7 @@ Windows EC2 Instance
 - **443** → Secure Website
 - **3389** → Windows Desktop
 - **21** → File Transfer
+
+# How to SSH into Your EC2 Instance
+
+SSH is one of the most important functions. It allows you to control a remote machine, all using the command line.
