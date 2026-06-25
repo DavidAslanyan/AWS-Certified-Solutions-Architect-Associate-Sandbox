@@ -247,3 +247,151 @@ When launching a new web server, an EC2 User Data script can automatically:
 4. Start required services
 
 This allows the server to be ready for use immediately after launch.
+
+# AWS EC2 Instance Types
+
+## EC2 Instance Types
+
+AWS provides different EC2 instance types optimized for specific workloads.
+
+Reference:
+- https://aws.amazon.com/ec2/instance-types/
+
+---
+
+## Instance Type Naming Convention
+
+Example:
+
+```text
+m5.2xlarge
+```
+
+### Breakdown
+
+| Component | Meaning |
+|------------|---------|
+| `m` | Instance family/class |
+| `5` | Generation (newer generations provide improved performance and features) |
+| `2xlarge` | Instance size within the family |
+
+---
+
+## Main EC2 Instance Categories
+
+### 1. General Purpose Instances
+
+General-purpose instances provide a balanced mix of:
+
+- Compute
+- Memory
+- Networking
+
+#### Use Cases
+
+- Web servers
+- Application servers
+- Code repositories
+- Small and medium databases
+- Development and testing environments
+
+#### Example Families
+
+- M series (e.g., `m5`, `m6i`, `m7i`)
+
+---
+
+### 2. Compute Optimized Instances (C Series)
+
+Designed for compute-intensive workloads requiring high-performance processors.
+
+#### Use Cases
+
+- Batch processing workloads
+- Media transcoding
+- High-performance web servers
+- High Performance Computing (HPC)
+- Scientific modeling
+- Machine learning
+- Dedicated gaming servers
+
+#### Example Families
+
+- C series (e.g., `c5`, `c6i`, `c7i`)
+
+**Exam Tip:**  
+Choose Compute Optimized instances when CPU performance is the primary requirement.
+
+---
+
+### 3. Memory Optimized Instances (R Series)
+
+Designed for workloads that process large datasets in memory.
+
+#### Benefits
+
+- High memory-to-vCPU ratio
+- Faster access to data stored in RAM
+
+#### Use Cases
+
+- High-performance relational databases
+- High-performance NoSQL databases
+- Distributed web-scale cache stores
+- In-memory databases
+- Business Intelligence (BI) applications
+- Real-time big data processing
+
+#### Example Families
+
+- R series (e.g., `r5`, `r6i`, `r7i`)
+
+**Exam Tip:**  
+If the question mentions large datasets, caching, or in-memory processing, think **Memory Optimized**.
+
+---
+
+### 4. Storage Optimized Instances
+
+Designed for storage-intensive workloads requiring high sequential read/write performance.
+
+#### Benefits
+
+- High IOPS (Input/Output Operations Per Second)
+- Low latency storage access
+- Optimized local storage performance
+
+#### Use Cases
+
+- High-frequency Online Transaction Processing (OLTP)
+- Relational databases
+- NoSQL databases
+- Caching for in-memory databases (e.g., Redis)
+- Data warehousing
+- Distributed file systems
+
+#### Example Families
+
+- I series
+- D series
+
+**Exam Tip:**  
+If the workload requires extremely fast disk access or large local storage, choose **Storage Optimized**.
+
+---
+
+## Quick Memory Trick for the Exam
+
+| Family | Meaning | Best For |
+|----------|---------|----------|
+| **M** | General Purpose | Balanced workloads |
+| **C** | Compute Optimized | CPU-intensive applications |
+| **R** | Memory Optimized | RAM-intensive applications |
+| **I / D** | Storage Optimized | High-performance storage workloads |
+
+### Easy Way to Remember
+
+- **M = Mixed resources**
+- **C = CPU**
+- **R = RAM**
+- **I/D = Disk**
