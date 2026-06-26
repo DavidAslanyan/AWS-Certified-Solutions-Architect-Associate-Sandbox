@@ -581,3 +581,78 @@ Windows EC2 Instance
 # How to SSH into Your EC2 Instance
 
 SSH is one of the most important functions. It allows you to control a remote machine, all using the command line.
+
+
+# EC2 Instance Connect
+
+- Connect to your EC2 instance directly from your web browser.
+- No need to use the downloaded key pair (`.pem` file).
+- AWS temporarily uploads a key to the EC2 instance to authenticate your session.
+- Works out of the box only with **Amazon Linux 2**.
+- **Port 22 (SSH)** must still be open in the Security Group.
+
+---
+
+# EC2 Purchase Options
+
+## On-Demand Instances
+
+- Best for short-term workloads.
+- Predictable pricing.
+- Pay only for what you use (billed per second).
+
+---
+
+## Reserved Instances (1 or 3 Years)
+
+Designed for long-running workloads.
+
+### Reserved Instances
+
+- Commit to a 1- or 3-year term.
+- Lower cost compared to On-Demand.
+
+### Convertible Reserved Instances
+
+- Commit to a 1- or 3-year term.
+- Allows flexibility to change instance types during the reservation.
+
+---
+
+## Savings Plans (1 or 3 Years)
+
+- Commit to a certain amount of compute usage.
+- Best for long-term workloads.
+- Provides flexible pricing discounts.
+
+---
+
+## Spot Instances
+
+- Best for short-term workloads.
+- Significantly cheaper than On-Demand.
+- AWS can reclaim the instance at any time.
+- Less reliable for critical applications.
+
+---
+
+## Dedicated Hosts
+
+- Reserve an entire physical server.
+- Full control over instance placement.
+- Useful for licensing and compliance requirements.
+
+---
+
+## Dedicated Instances
+
+- Your instances run on hardware that is not shared with other AWS customers.
+- Less control than Dedicated Hosts, but provides hardware isolation.
+
+---
+
+## Capacity Reservations
+
+- Reserve compute capacity in a specific Availability Zone (AZ).
+- Can be reserved for any duration.
+- Ensures capacity is available when needed.
