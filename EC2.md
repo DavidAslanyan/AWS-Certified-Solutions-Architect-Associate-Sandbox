@@ -656,3 +656,205 @@ Designed for long-running workloads.
 - Reserve compute capacity in a specific Availability Zone (AZ).
 - Can be reserved for any duration.
 - Ensures capacity is available when needed.
+
+
+# Elastic IP (EIP)
+
+By default, when you **stop** and then **start** an EC2 instance, its **public IP address may change**.
+
+If you need a permanent public IP address, you can use an **Elastic IP (EIP)**.
+
+## Key Characteristics
+
+- An Elastic IP is a **static public IPv4 address**.
+- You own the IP until you explicitly release (delete) it.
+- An Elastic IP can be attached to **only one EC2 instance at a time**.
+- You can quickly remap an Elastic IP from one instance to another, making it useful for failover scenarios.
+
+## Limits
+
+- By default, each AWS account can have **up to 5 Elastic IP addresses**.
+- You can request a quota increase from AWS if needed.
+
+## Best Practices
+
+Try to avoid using Elastic IPs whenever possible because they often indicate poor architecture.
+
+Instead, consider:
+
+- Using a dynamic public IP with a DNS record pointing to it.
+- Using an **Elastic Load Balancer (ELB)** so clients connect to the load balancer instead of directly to an EC2 instance.
+
+---
+
+# Placement Groups
+
+Placement Groups allow you to control **how EC2 instances are physically placed** within AWS infrastructure.
+
+There are three placement strategies.
+
+## 1. Cluster Placement Group
+
+- Places instances close together.
+- All instances are located in a **single Availability Zone (AZ)**.
+- Provides **low network latency** and **high network throughput**.
+
+### Best For
+
+- High-performance computing (HPC)
+- Big data workloads
+- Applications requiring very fast communication between instances
+
+---
+
+## 2. Spread Placement Group
+
+- Places instances on **different underlying hardware**.
+- Reduces the risk of multiple instances failing due to hardware failure.
+- Maximum of **7 instances per Availability Zone**.
+
+### Best For
+
+- Critical applications where high availability is important.
+
+---
+
+## 3. Partition Placement Group
+
+- Divides instances across multiple **partitions**.
+- Each partition uses a different set of racks and hardware.
+- Can scale to **hundreds of EC2 instances**.
+
+### Best For
+
+Large distributed systems such as:
+
+- Hadoop
+- Cassandra
+- Kafka
+
+---
+
+# Elastic Network Interface (ENI)
+
+An **Elastic Network Interface (ENI)** is a virtual network card that exists inside a **Virtual Private Cloud (VPC)**.
+
+## An ENI Can Have
+
+- One primary private IPv4 address
+- One or more secondary private IPv4 addresses
+- One Elastic IP for each private IPv4 address
+- One public IPv4 address
+- One or more Security Groups
+- A MAC address
+
+## Features
+
+- Can be created independently of an EC2 instance.
+- Can be attached or detached from EC2 instances at any time.
+- Useful for failover by moving the network interface to another instance.
+- Bound to a specific **Availability Zone (AZ)**.
+
+---
+
+# EC2 Hibernate
+
+Normally, EC2 instances support two lifecycle actions.
+
+## Stop
+
+- Instance shuts down.
+- Root EBS volume is preserved.
+- RAM contents are lost.
+
+## Terminate
+
+- Instance is permanently deleted.
+- Root EBS volume is deleted (if configured to do so).
+- All RAM contents are lost.
+
+## What Happens During Startup?
+
+### First Boot
+
+- Operating system boots.
+- EC2 User Data script runs.
+- Applications start.
+
+### Later Boots
+
+- Operating system boots.
+- Applications start.
+- Caches are rebuilt and services initialize, which can take time.
+
+---
+
+# EC2 Hibernate
+
+Hibernate allows an EC2 instance to resume exactly where it left off.
+
+Instead of shutting down completely:
+
+- The contents of RAM are saved to the encrypted root EBS volume.
+- The operating system is not fully restarted.
+- Applications continue from the previous state.
+
+## Advantages
+
+- Much faster startup time.
+- Preserves the contents of memory (RAM).
+- Avoids lengthy application initialization.
+
+## Under the Hood
+
+- RAM is written to a file on the **encrypted root EBS volume**.
+- The root volume **must** be an encrypted EBS volume.
+
+## Common Use Cases
+
+- Long-running computations
+- Preserving application state in memory
+- Applications that require significant startup time
+
+---
+
+# EC2 Hibernate Requirements
+
+## Supported Instance Families
+
+Examples include:
+
+- C3, C4, C5
+- I3
+- M3, M4
+- R3, R4
+- T2, T3
+- And many newer supported families
+
+## Requirements
+
+- RAM must be **less than 150 GB**.
+- Bare metal instances are **not supported**.
+- Supported operating systems include:
+  - Amazon Linux 2
+  - Linux AMIs
+  - Ubuntu
+  - RHEL
+  - CentOS
+  - Windows
+- Root volume must:
+  - Be an encrypted EBS volume
+  - Not be an Instance Store volume
+  - Be large enough to store the RAM contents
+
+## Pricing Options Supported
+
+Hibernate works with:
+
+- On-Demand Instances
+- Reserved Instances
+- Spot Instances
+
+## Limitation
+
+An EC2 instance **cannot remain hibernated for more than 60 days**.
