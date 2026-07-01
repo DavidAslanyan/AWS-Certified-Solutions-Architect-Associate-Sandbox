@@ -147,3 +147,90 @@ Examples include:
 
 - SSL/TLS certificates have an expiration date.
 - Certificates must be renewed before they expire to maintain secure connections.
+
+# Auto Scaling Groups (ASG)
+
+## What is an Auto Scaling Group?
+
+In real-world applications, traffic and workload demands constantly change.
+
+Because cloud resources can be provisioned and terminated quickly, AWS provides **Auto Scaling Groups (ASGs)** to automatically adjust the number of EC2 instances based on demand.
+
+## Goals of an Auto Scaling Group
+
+- **Scale Out** (add EC2 instances) when load increases.
+- **Scale In** (remove EC2 instances) when load decreases.
+- Maintain a minimum number of running EC2 instances.
+- Enforce a maximum number of running EC2 instances.
+- Automatically register new instances with a Load Balancer.
+- Automatically replace unhealthy or terminated instances.
+
+## Pricing
+
+- Auto Scaling Groups themselves are **free**.
+- You only pay for the underlying EC2 instances and other AWS resources used.
+
+---
+
+# Auto Scaling Group Scaling Policies
+
+Scaling policies determine when and how an ASG adds or removes EC2 instances.
+
+## Dynamic Scaling
+
+Automatically adjusts capacity based on metrics and demand.
+
+### Target Tracking Scaling
+
+- Simple to configure.
+- AWS automatically scales the ASG to maintain a target metric value.
+
+**Example:**
+
+```text
+Target Average CPU Utilization = 40%
+```
+
+If CPU usage rises above the target, AWS adds instances.
+
+If CPU usage falls below the target, AWS removes instances.
+
+---
+
+### Simple / Step Scaling
+
+Uses CloudWatch alarms to trigger scaling actions.
+
+**Examples:**
+
+```text
+CPU > 70%  → Add 2 instances
+```
+
+```text
+CPU < 30%  → Remove 1 instance
+```
+
+Scaling actions occur when the associated CloudWatch alarm is triggered.
+
+---
+
+## Scheduled Scaling
+
+Used when traffic patterns are predictable.
+
+You define scaling actions that occur at specific times.
+
+**Example:**
+
+```text
+Every Friday at 5:00 PM
+Increase minimum capacity to 10 instances
+```
+
+Useful for:
+
+- Business hours traffic spikes
+- Weekly events
+- Marketing campaigns
+- Seasonal demand patterns
