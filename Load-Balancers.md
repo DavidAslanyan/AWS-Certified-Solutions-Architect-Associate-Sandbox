@@ -94,3 +94,56 @@ Gateway Load Balancer (GWLB) is designed to deploy, scale, and manage fleets of 
   - **Transparent Network Gateway** – provides a single entry and exit point for all traffic.
   - **Load Balancer** – distributes traffic across multiple virtual appliances.
 - Uses the **GENEVE** protocol on **port 6081**.
+
+
+# Sticky Sessions (Session Affinity)
+
+Sticky Sessions (also known as **Session Affinity**) ensure that the same client is consistently routed to the same backend instance behind a Load Balancer.
+
+## Features
+
+- The same client is always redirected to the same EC2 instance.
+- Supported by:
+  - Classic Load Balancer (CLB)
+  - Application Load Balancer (ALB)
+  - Network Load Balancer (NLB)
+- For **CLB** and **ALB**, stickiness is implemented using **cookies**.
+- The cookie expiration time is configurable.
+
+## Use Case
+
+- Ensures users do not lose their session data when making multiple requests.
+
+## Considerations
+
+- Enabling stickiness can lead to an uneven distribution of traffic across backend EC2 instances.
+
+---
+
+# SSL/TLS Basics
+
+An **SSL/TLS certificate** encrypts traffic between clients and your Load Balancer, providing **encryption in transit**.
+
+## SSL vs TLS
+
+- **SSL (Secure Sockets Layer)** is the original protocol for encrypting network connections.
+- **TLS (Transport Layer Security)** is the newer, more secure version of SSL.
+- Although TLS is used today, the term **SSL certificate** is still commonly used.
+
+## Certificate Authorities (CAs)
+
+Public SSL/TLS certificates are issued by trusted **Certificate Authorities (CAs)**.
+
+Examples include:
+
+- Comodo
+- Symantec
+- GoDaddy
+- GlobalSign
+- DigiCert
+- Let's Encrypt
+
+## Certificate Expiration
+
+- SSL/TLS certificates have an expiration date.
+- Certificates must be renewed before they expire to maintain secure connections.
