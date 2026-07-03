@@ -116,3 +116,56 @@ To perform custom changes:
 | SSH Access | ❌ | ✅ |
 | Database Customization | Limited | Full |
 | Best For | Standard managed databases | Oracle & SQL Server workloads requiring OS/database customization |
+
+# Amazon Aurora
+
+Amazon Aurora is a proprietary relational database engine developed by AWS.
+
+## Overview
+
+- Aurora is an AWS proprietary technology (not open source).
+- Compatible with:
+  - PostgreSQL
+  - MySQL
+- Existing PostgreSQL and MySQL drivers work with Aurora without modification.
+- Optimized specifically for the AWS Cloud.
+
+## Performance
+
+- Up to **5×** faster than MySQL running on Amazon RDS.
+- Up to **3×** faster than PostgreSQL running on Amazon RDS.
+
+## Storage
+
+- Storage automatically grows in **10 GB increments**.
+- Supports up to **256 TB** of storage.
+
+## Replication
+
+- Supports up to **15 Aurora Replicas**.
+- Replication is much faster than standard MySQL replication.
+- Typical replica lag is **less than 10 ms**.
+
+## High Availability
+
+- Instantaneous failover.
+- High Availability (HA) is built into Aurora.
+
+## Pricing
+
+- Aurora costs approximately **20% more** than Amazon RDS.
+- The additional cost is justified by higher performance and greater efficiency.
+
+---
+
+# Features of Amazon Aurora
+
+- Automatic failover
+- Backup and recovery
+- Isolation and security
+- Industry compliance
+- Push-button scaling
+- Automated patching with zero downtime
+- Advanced monitoring
+- Routine maintenance
+- **Backtrack** – restore the database to a previous point in time without using backups
